@@ -18,8 +18,13 @@ public class Docsystem {
         luk.register();
         gaz.modify();
         luk.modify();
+        gaz.modify();
+        luk.modify();
         gaz.confirm();
         
+        
+        
+//        
         
     }
     

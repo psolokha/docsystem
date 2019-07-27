@@ -5,22 +5,25 @@ public class Doc {
     private Integer id;
     private Company creator;
     private Company side2;
-    private Boolean isModified;
-    private Boolean isConfirmed;
-    private Boolean signSide1;
-    private Boolean signSide2;
+    private Boolean isConfirmed = false;
+    private Boolean signSide1 = false;
+    private Boolean signSide2 = false;
     
     public Doc(Company creator, Company side2){
         this.creator = creator;
         this.side2 = side2;
     }
-
-    public Boolean getIsModified() {
-        return isModified;
+    
+    public Doc(Company creator, Company side2, Integer id){
+        this.id = id;
+        this.creator = creator;
+        this.side2 = side2;
     }
-
-    public void setIsModified(Boolean isModified) {
-        this.isModified = isModified;
+    
+    public Doc (Doc doc) {
+        this.id = doc.getId();
+        this.creator = doc.getCreator();
+        this.side2 = doc.getSide2();
     }
 
     public Boolean getIsConfirmed() {

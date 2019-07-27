@@ -3,7 +3,6 @@ package docsystem;
 public abstract class Company{
     private String name;
     private Doc doc;
-    //private Company side2;
     
     public Company(String name){
         this.name = name;
@@ -18,18 +17,19 @@ public abstract class Company{
     public void register(){
         System.out.println("registered by " + name);
         Sys.register(doc);
+        System.out.println(doc);
+        doc = null;
     }
     
     public void modify(){
+        System.out.println("current Doc is created by " + doc.getCreator());
+        System.out.println("doc id: " + doc.getId());
+        this.doc = new Doc(this, doc.getCreator(), doc.getId());
         System.out.println("modified by " + name);
-        this.doc = new Doc(this, doc.getCreator());
-        doc.setIsModified(true);
-        
+        System.out.println("modify docID:" + doc.getId());
+        Sys.confirm(doc);
+        doc = null;
     }
-
-//    public void setSide2(Company side2) {
-//        this.side2 = side2;
-//    }
 
     public void setDoc(Doc doc) {
         this.doc = doc;
@@ -39,6 +39,7 @@ public abstract class Company{
         System.out.println("confirmed by " + name);
         doc.setIsConfirmed(true);
         Sys.confirm(doc);
+        doc = null;
     }
     
 }

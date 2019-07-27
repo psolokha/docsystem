@@ -10,15 +10,18 @@ public abstract class Company{
     }
     
     public Doc createDoc(Company side2){
+        System.out.println("created by " + name);
         doc = new Doc(this,side2);
         return doc;
     }
     
     public void register(){
+        System.out.println("registered by " + name);
         Sys.register(doc);
     }
     
     public void modify(){
+        System.out.println("modified by " + name);
         this.doc = new Doc(this, doc.getCreator());
         doc.setIsModified(true);
         
@@ -33,6 +36,7 @@ public abstract class Company{
     }
 
     public void confirm() {
+        System.out.println("confirmed by " + name);
         doc.setIsConfirmed(true);
         Sys.confirm(doc);
     }

@@ -8,28 +8,19 @@ public class Docsystem {
 
         Lukoil luk = new Lukoil("Lukoil");
         Gazprom gaz = new Gazprom("Gazprom");
-        //Sys.currentDate.set(Calendar.HOUR_OF_DAY, 5);
-        
-        System.out.println();
-        
+
         //scene1;
         gaz.createDoc(luk, "doc1");
         gaz.register();
         luk.confirm();
         
-        
         //scene2;
-        luk.createDoc(gaz, "doc1");
+        luk.createDoc(gaz, "doc2");
         luk.register();
         gaz.modify();
         luk.modify();
         gaz.modify();
-        luk.modify();
-        gaz.confirm();
-        
-        
-        
-//        
+        luk.confirm();
         
     }
     

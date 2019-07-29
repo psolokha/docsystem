@@ -34,16 +34,17 @@ public class Sys{
         }
             else {
                 currentDoc = new Doc(doc);
-        if (doc.getIsConfirmed()) {
-            signUp2();
-            currentDoc.getCreator().removeDoc(currentDoc);
-            currentDoc.getSide2().removeDoc(currentDoc);
-            System.out.println("done!");
-        }
-        else{
-            docsDB.put(currentDoc.getId(), currentDoc);
-            sendDoc();
-        }
+                if (doc.getIsConfirmed()) {
+                    signUp2();
+                    currentDoc.getCreator().removeDoc(currentDoc);
+                    currentDoc.getSide2().removeDoc(currentDoc);
+                    System.out.println("done!");
+                    currentDoc = null;
+                }
+                else{
+                    docsDB.put(currentDoc.getId(), currentDoc);
+                    sendDoc();
+                }
             }
     }
     

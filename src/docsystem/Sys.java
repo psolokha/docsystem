@@ -12,9 +12,9 @@ public class Sys{
     private static Doc currentDoc;
     
     public static void register(Doc doc){
-        
-        if (currentDate.get(Calendar.HOUR_OF_DAY) >= 21 || currentDate.get(Calendar.HOUR_OF_DAY)< 7 ) {
+        if (currentDate.get(Calendar.HOUR_OF_DAY) >= Const.END_DAY || currentDate.get(Calendar.HOUR_OF_DAY)< Const.START_DAY ) {
             System.out.println("Service will be avilable at 7:00");
+            return;
         }
         else {
         doc.setId(++numDocs);
@@ -28,8 +28,9 @@ public class Sys{
     }
     
         public static void confirm(Doc doc) {
-            if (currentDate.get(Calendar.HOUR_OF_DAY) >= 21 || currentDate.get(Calendar.HOUR_OF_DAY)< 7 ) {
+            if (currentDate.get(Calendar.HOUR_OF_DAY) >= Const.END_DAY || currentDate.get(Calendar.HOUR_OF_DAY)< Const.START_DAY ) {
             System.out.println("Service will be avilable at 7:00");
+            return;
         }
             else {
                 currentDoc = new Doc(doc);

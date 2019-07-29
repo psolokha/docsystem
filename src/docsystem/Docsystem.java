@@ -14,14 +14,12 @@ public class Docsystem {
         
         //scene1;
         gaz.createDoc(luk, "doc1");
-        gaz.showDocs();
         gaz.register();
         luk.confirm();
         
         
         //scene2;
         luk.createDoc(gaz, "doc1");
-        luk.showDocs();
         luk.register();
         gaz.modify();
         luk.modify();

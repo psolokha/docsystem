@@ -1,10 +1,9 @@
 package docsystem;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public abstract class Company{
     private String name;
@@ -60,42 +59,8 @@ public abstract class Company{
     private class DocFolder {
         private int docCounter = 0;
         private int sCounter = 0;
-        private Date currDate = new Date();
+        private Calendar currDate = new GregorianCalendar();
         private Map<String, Doc> docFolder = new HashMap<>();
-        
-        public void cheking(Doc doc) {
-                System.out.println("cheking number of docs...");
-                if (docCounter > 10) {
-                    System.out.println("Too many docs in system");
-                    return;
-                }
-                
-                System.out.println("cheking number of same companies...");
-                docFolder.entrySet().forEach((es) -> {
-                    if (doc.getSide2().equals(es.getValue().getSide2())) sCounter++;  
-                });
-                
-                if (sCounter > 2) {
-                    System.out.println("More than 2 docs to 1 company");
-                    return;
-                }
-                sCounter = 0;
-                
-                System.out.println("cheking number of documents in the last hour");
-                docFolder.entrySet().forEach((es) -> {
-                    if (((currDate.getTime()-es.getValue().getTimeCreated().getTimeInMillis())/60000) < 60) {
-                            sCounter++;
-                            System.out.println(sCounter);
-                    }
-                });
-                System.out.println(docFolder.size());
-                if (sCounter > 4) {
-                    System.out.println("Too many documents is last hour");
-                    return;
-                }
-                sCounter = 0;
-                 
-        }
         
         public void showDocs() {
             docFolder.entrySet().forEach((es) -> {
@@ -104,7 +69,7 @@ public abstract class Company{
         }
         
         public void putDoc(Doc doc){
-                if (docCounter > 10) {
+                if (docCounter > Const.MAX_DOCS_NUMBER) {
                     return;
                 }
                 
@@ -112,17 +77,17 @@ public abstract class Company{
                     if (doc.getSide2().equals(es.getValue().getSide2())) sCounter++;  
                 });
                 
-                if (sCounter >= 2) {
+                if (sCounter >= Const.DOCS_FOR_COMPANY) {
                     return;
                 }
                 sCounter = 0;
                 
                 docFolder.entrySet().forEach((es) -> {
-                    if (((currDate.getTime()-es.getValue().getTimeCreated().getTimeInMillis())/60000) < 60) {
+                    if (((currDate.getTimeInMillis()-es.getValue().getTimeCreated().getTimeInMillis())/60000) < Const.MINUTES) {
                             sCounter++;
                     }
                 });
-                if (sCounter > 4) {
+                if (sCounter >= Const.DOCS_IN_TIME) {
                     return;
                 }
                 sCounter = 0;
